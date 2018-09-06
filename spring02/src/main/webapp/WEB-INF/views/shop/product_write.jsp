@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<!-- ckeditor 사용을 위해 js 파일 연결 -->
+<script src="${path}/ckeditor/ckeditor.js"></script>
+
 </head>
 <body>
 <%@ include file="../include/admin_menu.jsp" %>
@@ -49,6 +52,13 @@ enctype="multipart/form-data">
     <td>
     <textarea rows="5" cols="60" 
     name="description" id="description"></textarea>
+  <script>
+  //id가 description인 태그에 ckeditor를 적용
+  
+  CKEDITOR.replace("description", {
+	  filebrowserUploadUrl : "${path}/imageUpload.do"
+  });
+  </script>  
     </td>
   </tr>    
   <tr>

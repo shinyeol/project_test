@@ -6,7 +6,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../include/header.jsp" %>
+<!-- 필요한 곳에서 적용  -->
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js -->
+<link href="${path}/summernote/summernote.css" rel="stylesheet">
+<script src="${path}/summernote/summernote.js"></script>
+
 <script type="text/javascript">
+$(function(){
+	$("#memo").summernote({
+		height : 150,
+		width : 600
+	});
+});
+
 function memo_view(idx){
 	location.href="${path}/memo/view/"+idx;
 	
@@ -29,7 +46,9 @@ function memo_view(idx){
 <h2>메모장</h2>
 <form method="post" action="${path}/memo/insert.do">
   이름 : <input name="writer" size="10"><br>
-  메모 : <input id="memo" name="memo" size="40">
+  메모 : <!-- <input id="memo" name="memo" size="40"> -->
+  <textarea rows="3" cols="50" name="memo" id="memo"></textarea>
+  
   <input type="submit" value="확인">
 </form>
 
