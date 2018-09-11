@@ -20,10 +20,10 @@ public class LogAdvice {
 	//@시점execution( *"범위"+"범위"+"범위"..)
 	//.. 모든 하위패키지를 의미, *(..) 모든 메소드를 의미
 	
-	/*@Around(//@Before,@After 는 JoinPoint, 메소드 대체
-	"execution(* com.example.spring02.controller..*Controller.*(..))"
-		+ " or execution(* com.example.spring02.service..*Impl.*(..))"
-		+ " or execution(* com.example.spring02.model..dao.*Impl.*(..))")*/
+//	@Around(//@Before,@After 는 JoinPoint, 메소드 대체
+//	"execution(* com.example.spring02.controller..*Controller.*(..))"
+//		+ " or execution(* com.example.spring02.service..*Impl.*(..))"
+//		+ " or execution(* com.example.spring02.model..dao.*Impl.*(..))")
 	
 	public Object logPrint(ProceedingJoinPoint joinPoint)
 	//public Object logPrint(JoinPoint joinPoint) //@Before, @After 적용시

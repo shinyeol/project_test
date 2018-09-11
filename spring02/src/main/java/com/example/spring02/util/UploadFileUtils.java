@@ -20,24 +20,19 @@ public class UploadFileUtils {
 	
 	public static String uploadFile(String uploadPath, 
 			String originalName, byte[] fileData) throws Exception {
-		
 		// uuid 발급
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString() + "_" + originalName;
-		
 		//업로드할 디렉토리 생성
 		String savedPath = calcPath(uploadPath);
 		File target = new File(uploadPath + savedPath, savedName);
-		
 		//임시 디렉토리에 업로드된 파일을 지정된 디렉토리로 복사
 		FileCopyUtils.copy(fileData, target);
-		
 		//파일의 확장자 검사(.다음 마지막 이름이 확장자임을 활용)
 		// a.jpg  aaa.bbb.ccc.jpg
 		String formatName = 
 				originalName.substring(originalName.lastIndexOf(".") + 1);
 		String uploadedFileName = null;
-		
 		// 이미지 파일은 썸네일(작은 이미지) 사용
 		if (MediaUtils.getMediaType(formatName) != null) {
 			//썸네일 생성
@@ -64,28 +59,23 @@ public class UploadFileUtils {
 	
 	private static String makeThumbnail(String uploadPath, 
 			String path, String fileName) throws Exception {
-		
 		//이미지를 읽기 위한 버퍼
 		BufferedImage sourceImg = ImageIO.read(
 				new File(uploadPath + path, fileName));
-		
 		//100픽셀 단위 썸네일 생성
 		BufferedImage destImg = Scalr.resize(
 				sourceImg, Scalr.Method.AUTOMATIC, 
 				Scalr.Mode.FIT_TO_HEIGHT, 100);
-		
 		//썸네일의 이름
-		String thumbnailName = uploadPath + 
+		String thumbailName = uploadPath + 
 				path + File.separator + "s_" + fileName;
-		File newFile = new File(thumbnailName);
+		File newFile = new File(thumbailName);
 		String formatName = fileName.substring(
 				fileName.lastIndexOf(".") + 1);
-		
 		//썸네일 생성
 		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
-		
 		//썸네일의 이름을 리턴함
-		return thumbnailName.substring(
+		return thumbailName.substring(
 				uploadPath.length()).replace(File.separatorChar, '/');
 	}//makeThumbnail()
 
@@ -99,7 +89,6 @@ public class UploadFileUtils {
 		String datePath = monthPath + File.separator 
 				+ new DecimalFormat("00").format(
 						cal.get(Calendar.DATE));
-		
 		//디렉토리 생성 메소드 호출
 		makeDir(uploadPath, yearPath, monthPath, datePath);
 		logger.info(datePath);

@@ -6,13 +6,7 @@ public class EmailDTO {
 	private String receiveMail;
 	private String subject;
 	private String message;
-	
-	@Override
-	public String toString() {
-		return "EmailDTO [senderName=" + senderName + ", senderMail=" + senderMail + ", receiveMail=" + receiveMail
-				+ ", subject=" + subject + ", message=" + message + "]";
-	}
-	
+	//getter,setter,toString까지만
 	public String getSenderName() {
 		return senderName;
 	}
@@ -43,4 +37,10 @@ public class EmailDTO {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	@Override
+	public String toString() {
+		return "EmailDTO [senderName=" + senderName + ", senderMail=" + senderMail + ", receiveMail=" + receiveMail
+				+ ", subject=" + subject + ", message=" + message + "]";
+	}
+
 }

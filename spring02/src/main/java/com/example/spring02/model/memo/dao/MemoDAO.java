@@ -7,11 +7,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Repository;
 
 import com.example.spring02.model.memo.dto.MemoDTO;
 
-@Repository
 public interface MemoDAO {
 	
 	@Select("select * from memo order by idx desc")

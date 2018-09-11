@@ -30,8 +30,7 @@ public class ImageUploadController {
 		byte[] bytes=upload.getBytes();
 		//이미지를 업로드할 디렉토리(배포 디렉토리로 설정)
 		String uploadPath=
-				/*"D:\\work\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\spring02\\WEB-INF\\views\\images\\";*/
-				"C:\\Users\\mr02-22\\git\\repository\\spring02\\src\\main\\webapp\\WEB-INF\\views\\images\\";
+"D:\\work\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\spring02\\WEB-INF\\views\\images\\";
 		//클라이언트  => 서버로 업로드
 		OutputStream out=
 				new FileOutputStream(new File(uploadPath+fileName));
@@ -44,10 +43,10 @@ public class ImageUploadController {
 		PrintWriter printWriter=response.getWriter();
 		String fileUrl=
 				request.getContextPath()+"/images/"+fileName;
-		printWriter.println(
-				"<script>window.parent.CKEDITOR.tools.callFunction("
-				+callback+",'"+fileUrl+"','이미지가 업로드되었습니다.')"
-				+"</script>");
+printWriter.println(
+		"<script>window.parent.CKEDITOR.tools.callFunction("
+		+callback+",'"+fileUrl+"','이미지가 업로드되었습니다.')"
+		+"</script>");
 		printWriter.flush();//flush() 제거
 	}
 }

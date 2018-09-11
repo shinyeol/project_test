@@ -7,26 +7,32 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter {
-	
+public class LoginInterceptor 
+extends HandlerInterceptorAdapter {
+
+	//preHandle은 메인 액션이 실행되기 전	
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		// session 객체 생성
-		HttpSession session = request.getSession();
-		// 세션이 없으면
+	public boolean preHandle(HttpServletRequest request, 
+			HttpServletResponse response, Object handler)
+					throws Exception {
+		// 세션 객체 생성
+		HttpSession session=request.getSession();
+		//세션이 없으면(로그인되지 않은 상태
 		if(session.getAttribute("userid") == null) {
-			response.sendRedirect("/spring02/member/login.do?message=nologin");
-			return false; // 메인 엑션으로 가지 않음
-		} else {
-			return true;
+			response.sendRedirect(request.getContextPath()
+					+"/member/login.do?message=nologin");
+			return false; //메인 액션으로 가지 않음
+		}else {
+			return true; //메인 액션으로 이동
 		}
-	}
-	
+	}//preHandle()
+
+	//메인 액션이 실행된 후
+
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		super.postHandle(request, response, handler, modelAndView);
-	}
-	
+	}	
+
 }

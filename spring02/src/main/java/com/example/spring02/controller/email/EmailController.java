@@ -25,11 +25,14 @@ public class EmailController {
 	public String send(@ModelAttribute EmailDTO dto, Model model) {
 		try {
 			emailService.sendMail(dto);
-			model.addAttribute("message", "이메일이 발송되었습니다.");
+			model.addAttribute("message","이메일이 발송되었습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("message", "이메일이 발송 실패...");
+			model.addAttribute("message","이메일 발송 실패...");
 		}
 		return "/email/write";
 	}
+	
+	
+
 }
